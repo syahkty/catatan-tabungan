@@ -80,6 +80,10 @@ export default async function Home({ searchParams }) {
               ))}
               {riwayat.length === 0 && <p className="text-xs text-gray-500 italic text-center py-2">Belum ada transaksi.</p>}
             </ul>
+            {/* INI KODE BARU YANG DITAMBAHKAN */}
+            <Link href="/riwayat" className="block text-center text-sm text-blue-600 font-bold mt-4 pt-3 border-t border-gray-100 hover:text-blue-800">
+              Lihat Semua Riwayat ➔
+            </Link>
           </div>
         </div>
 
