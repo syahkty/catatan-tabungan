@@ -1,6 +1,8 @@
 import { prisma } from "../lib/prisma";
 import { redirect } from "next/navigation";
 import Link from "next/link";
+import TombolSubmit from "./TombolSubmit";
+import TombolNavigasi from "./TombolNavigasi";
 
 export default async function Home({ searchParams }) {
   // Di Next.js versi terbaru, searchParams harus di-await
@@ -81,18 +83,22 @@ export default async function Home({ searchParams }) {
               {riwayat.length === 0 && <p className="text-xs text-gray-500 italic text-center py-2">Belum ada transaksi.</p>}
             </ul>
             {/* INI KODE BARU YANG DITAMBAHKAN */}
-            <Link href="/riwayat" className="block text-center text-sm text-blue-600 font-bold mt-4 pt-3 border-t border-gray-100 hover:text-blue-800">
-              Lihat Semua Riwayat ➔
-            </Link>
+            <TombolNavigasi 
+  href="/riwayat" 
+  teks="Lihat Semua Riwayat ➔" 
+  className="block text-center text-sm text-blue-600 font-bold mt-4 pt-3 border-t border-gray-100 hover:text-blue-800" 
+/>
           </div>
         </div>
 
         {/* Tombol Tabung Melayang di Bawah */}
         <div className="fixed bottom-0 left-0 w-full p-4 bg-white/80 backdrop-blur-md border-t border-gray-200">
           <div className="max-w-md mx-auto">
-            <Link href="/?step=2" className="block w-full bg-blue-600 text-white text-center font-bold py-3.5 rounded-full shadow-lg hover:bg-blue-700 transition">
-              + Tabung Sekarang
-            </Link>
+            <TombolNavigasi 
+  href="/?step=2" 
+  teks="+ Tabung Sekarang" 
+  className="block w-full bg-blue-600 text-white text-center font-bold py-3.5 rounded-full shadow-lg hover:bg-blue-700 transition" 
+/>
           </div>
         </div>
       </main>
@@ -105,7 +111,7 @@ export default async function Home({ searchParams }) {
   if (step === '2') {
     return (
       <main className="min-h-screen bg-white flex flex-col p-6 max-w-md mx-auto font-sans text-gray-800">
-        <Link href="/" className="text-gray-500 font-bold mb-6">← Kembali</Link>
+        <TombolNavigasi href="/" teks="← Kembali" className="text-gray-500 font-bold mb-6 block" />
         <h1 className="text-2xl font-bold mb-6">Mau nabung berapa?</h1>
         
         {/* Form menggunakan method GET agar datanya pindah ke URL (Step 3) */}
@@ -132,9 +138,7 @@ export default async function Home({ searchParams }) {
             />
           </div>
 
-          <button type="submit" className="w-full bg-blue-600 text-white font-bold py-4 rounded-xl shadow-md hover:bg-blue-700 transition mt-8">
-            Masukkan Uang
-          </button>
+          <TombolSubmit teks="Masukkan Uang" warnaBase="bg-blue-600" />
         </form>
       </main>
     );
@@ -167,12 +171,10 @@ export default async function Home({ searchParams }) {
           <form action={simpanTabungan}>
             <input type="hidden" name="nama" value={nama} />
             <input type="hidden" name="nominal" value={nominal} />
-            <button type="submit" className="w-full bg-green-500 text-white font-bold py-4 rounded-xl shadow-md hover:bg-green-600 transition">
-              Saya Sudah Transfer
-            </button>
+            <TombolSubmit teks="Saya Sudah Transfer" warnaBase="bg-green-500" />
           </form>
           
-          <Link href="/?step=2" className="block mt-4 text-sm text-gray-400 font-medium">Batal</Link>
+          <TombolNavigasi href="/?step=2" teks="Batal" className="block mt-4 text-sm text-gray-400 font-medium" />
         </div>
       </main>
     );

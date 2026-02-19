@@ -1,5 +1,6 @@
 import { prisma } from "../../lib/prisma";
 import Link from "next/link";
+import TombolNavigasi from "../TombolNavigasi";
 
 // Memaksa Next.js untuk selalu mengambil data terbaru dari database (tidak di-cache)
 export const dynamic = "force-dynamic";
@@ -16,9 +17,11 @@ export default async function Riwayat() {
         
         {/* Header dengan Tombol Kembali */}
         <div className="flex items-center justify-between mb-6">
-          <Link href="/" className="text-blue-600 font-bold bg-white px-4 py-2 rounded-lg shadow-sm border border-gray-200 hover:bg-gray-50 transition">
-            ← Kembali
-          </Link>
+          <TombolNavigasi 
+  href="/" 
+  teks="← Kembali" 
+  className="text-blue-600 font-bold bg-white px-4 py-2 rounded-lg shadow-sm border border-gray-200 hover:bg-gray-50 transition" 
+/>
           <h1 className="text-xl font-bold text-gray-700">Semua Transaksi</h1>
         </div>
         
